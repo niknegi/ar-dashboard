@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Search, MoreVertical } from "lucide-react";
+import { Link } from "react-router-dom";
 import type { InvoiceData } from "../types";
 
 interface DetailTableProps {
@@ -134,11 +135,12 @@ export function DetailTable({ data }: DetailTableProps) {
                       <div className="w-6 h-6 rounded bg-surface-container-highest flex items-center justify-center text-[10px] text-on-surface-variant">
                         {item.customer_vendor.charAt(0)}
                       </div>
-                      <span
-                        className={`font-bold ${item.status === "Overdue" ? "text-tertiary" : "text-on-surface"}`}
+                      <Link
+                        to={`/vendor/${encodeURIComponent(item.customer_vendor)}`}
+                        className={`font-bold hover:underline hover:text-primary transition-colors ${item.status === "Overdue" ? "text-tertiary hover:text-tertiary" : "text-on-surface"}`}
                       >
                         {item.customer_vendor}
-                      </span>
+                      </Link>
                     </div>
                   </td>
                   <td className="px-6 py-4">
